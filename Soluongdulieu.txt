@@ -1,0 +1,2 @@
+Số lượng dòng trong tập train: 8600
+Số lượng dòng trong tập test: 2286

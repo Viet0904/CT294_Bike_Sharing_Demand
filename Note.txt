@@ -1,0 +1,16 @@
+1. datetime - ngày giờ hàng giờ + dấu thời gian
+2. season - 1 = mùa xuân, 2 = mùa hè, 3 = mùa thu, 4 = mùa đông
+3. holiday - có phải là ngày lễ không
+4. workingday - có phải là ngày làm việc không bao gồm cả cuối tuần và ngày lễ
+5. weather -
+	1: Trời quang đãng, ít mây, mây rải rác
+	2: Sương mù + Đầy mây, Sương mù + Mây vỡ, Sương mù + ít mây, Sương mù
+	3: Tuyết nhẹ, Mưa nhẹ + Sấm sét + Mây rải rác, Mưa nhẹ + Mây rải rác
+	4: Mưa lớn + Mảnh băng + Sấm sét + Sương mù, Tuyết + Sương mù
+6. temp - nhiệt độ theo độ Celsius
+7. atemp - nhiệt độ cảm giác như theo độ Celsius
+8. humidity - độ ẩm tương đối
+9. windspeed - tốc độ gió
+10. casual - số lượng thuê xe không đăng ký được bắt đầu
+11. registered - số lượng thuê xe đã đăng ký được bắt đầu
+12. count - tổng số lượng thuê xe

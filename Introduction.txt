@@ -1,0 +1,5 @@
+- Bộ dữ liệu bao gồm, dữ liệu thuê xe trong 2 năm 2011 và 2012 
+- Tập train chứa 19 ngày đầu tiên mỗi tháng.
+- Tập test chứa từ ngày 20 dến cuối tháng.
+- Tập Train có 12 biến , tập test có 9 biến không có các biến registered, casual, and count
+- Trong đó các biến Hercasual, registered and count là các biến độc lập 
