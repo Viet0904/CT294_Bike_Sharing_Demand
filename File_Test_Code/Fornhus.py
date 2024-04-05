@@ -6,6 +6,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import mean_squared_error
+import numpy as np
 
 # Load dữ liệu từ file csv
 dt = pd.read_csv("./train.csv")
@@ -16,9 +17,11 @@ dt.drop(columns=["datetime"], inplace=True)
 dt.drop(columns=["casual"], inplace=True)
 dt.drop(columns=["registered"], inplace=True)
 
+print(dt)
 
 # Tách thuộc tính và nhãn
 X = dt.iloc[:, 0:-1]  # Lấy các cột từ cột thứ 1 trở đi
+print(X)
 y = dt.iloc[:, -1]  # Lấy cột đầu tiên
 print("Tap Thuoc Tinh")
 print(X)
@@ -37,9 +40,8 @@ lm.fit(X_train, y_train)
 # Đánh giá mô hình Linear Regression trên tập kiểm tra
 y_pred_lm = lm.predict(X_test)
 err_lm = mean_squared_error(y_test, y_pred_lm)
-print("MSE of Linear Regression = " + str(err_lm))
-rmse_err_lm = math.sqrt(err_lm)
-print("RMSE of Linear Regression = " + str(round(rmse_err_lm, 3)))
+print("MSE of LinearRegression  = ", mean_squared_error(y_test, y_pred_lm))
+print("RMSE of LinearRegression = ", np.sqrt(mean_squared_error(y_test, y_pred_lm)))
 
 # Huấn luyện mô hình Decision Tree Regression
 treeRegressor = DecisionTreeRegressor()
