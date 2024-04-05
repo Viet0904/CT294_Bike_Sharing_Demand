@@ -9,24 +9,24 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.ensemble import BaggingRegressor
-import numpy as np 
+import numpy as np
+
 # Load tap du lieu tu file csv
-dt = pd.read_csv("./BikeSharingDemand.csv.csv")
+dt = pd.read_csv("./BikeSharingDemand.csv")
 print(dt)
 
 # Chia dữ liệu thành X và y
 X = dt.drop(columns=["casual", "registered", "count", "datetime"])
 print(X)
-y = (dt["count"])  # Áp dụng logarithm cho cột "count"
+y = dt["count"]  # Áp dụng logarithm cho cột "count"
 
 # Chia dữ liệu thành tập huấn luyện và tập kiểm tra
 
 X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=1/3, random_state=42
+    X, y, test_size=1 / 3, random_state=42
 )
 print(X_train)
 print(X_test)
-
 
 
 ## Bagging
@@ -123,4 +123,4 @@ df_test = pd.DataFrame(
 )
 
 # Lưu DataFrame mới này vào tệp CSV
-df_test.to_csv("Bagging_predictions.csv", index=False)
+df_test.to_csv("./Luu_log/Bagging_predictions.csv", index=False)
