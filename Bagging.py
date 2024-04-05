@@ -11,13 +11,13 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.ensemble import BaggingRegressor
 import numpy as np 
 # Load tap du lieu tu file csv
-dt = pd.read_csv("./train.csv", index_col=0)
+dt = pd.read_csv("./BikeSharingDemand.csv.csv")
 print(dt)
 
 # Chia dữ liệu thành X và y
 X = dt.drop(columns=["casual", "registered", "count", "datetime"])
 print(X)
-y = np.log(dt["count"])  # Áp dụng logarithm cho cột "count"
+y = (dt["count"])  # Áp dụng logarithm cho cột "count"
 
 # Chia dữ liệu thành tập huấn luyện và tập kiểm tra
 
@@ -102,3 +102,25 @@ err_ensemble = mean_squared_error(y_test, y_pred_ensemble)
 print("MSE of Ensemble = " + str(err_ensemble))
 rmse_err_ensemble = math.sqrt(err_ensemble)
 print("RMSE of Ensemble = " + str(round(rmse_err_ensemble, 3)))
+
+print(y_pred_ensemble)
+
+
+# Tạo DataFrame mới từ dữ liệu test và kết quả dự đoán
+df_test = pd.DataFrame(
+    {
+        "season": X_test["season"],
+        "holiday": X_test["holiday"],
+        "workingday": X_test["workingday"],
+        "weather": X_test["weather"],
+        "temp": X_test["temp"],
+        "atemp": X_test["atemp"],
+        "humidity": X_test["humidity"],
+        "windspeed": X_test["windspeed"],
+        "Actual_Count": (y_test),
+        "Predicted_Count": (y_pred_ensemble),
+    }
+)
+
+# Lưu DataFrame mới này vào tệp CSV
+df_test.to_csv("Bagging_predictions.csv", index=False)
