@@ -11,11 +11,14 @@ from sklearn.ensemble import VotingRegressor
 # Load dữ liệu từ file CSV
 dt = pd.read_csv("./BikeSharingDemand.csv")
 # tạo cột year, month, day, hour từ cột datetime
-dt["datetime"] = pd.to_datetime(dt["datetime"])
+# dt["datetime"] = pd.to_datetime(dt["datetime"])
 
-dt["month"] = dt["datetime"].dt.month
-dt["weekday"] = dt["datetime"].dt.weekday
-dt["hour"] = dt["datetime"].dt.hour
+# dt["month"] = dt["datetime"].dt.month
+# dt["weekday"] = dt["datetime"].dt.weekday
+# dt["hour"] = dt["datetime"].dt.hour
+# dt["year"] = dt["datetime"].dt.year
+print(dt.head())
+# dt["year"] = dt["datetime"].dt.year
 # Chia dữ liệu thành X và y
 X = dt.drop(columns=["casual", "registered", "count", "datetime"])
 y = dt["count"]
