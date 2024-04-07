@@ -12,12 +12,12 @@ warnings.filterwarnings("ignore")
 # pd.options.display.max_columns = 999
 
 # Đọc dữ liệu từ file "train.csv"
-df = pd.read_csv("train.csv")
+df = pd.read_csv("BikeSharingDemand.csv")
 
 # Chia dữ liệu thành X và y
-X = df.drop(columns=["casual", "registered", "count", "datetime"])
+X = df.drop(columns=["casual", "registered", "count"])
 print(X)
-y = np.log(df["count"])  # Áp dụng logarithm cho cột "count"
+y = (df["count"])  # Áp dụng logarithm cho cột "count"
 
 # Chia dữ liệu thành tập huấn luyện và tập kiểm tra
 
