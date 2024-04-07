@@ -28,8 +28,6 @@ print(X)
 print("Tap Nhan")
 print(y)
 
-
-# This code snippet is performing the following tasks:
 # Tách dữ liệu thành tập huấn luyện và tập kiểm tra
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
