@@ -54,9 +54,6 @@ param_grid = {
         20,
         50,
         100,
-        200,
-        500,
-        1000,
     ],  # Số lượng cây quyết định trong rừng
     "max_depth": [
         None,
@@ -65,9 +62,6 @@ param_grid = {
         30,
         50,
         100,
-        200,
-        500,
-        1000,
     ],  # Độ sâu tối đa của các cây quyết định
     "min_samples_split": [
         2,
@@ -76,9 +70,6 @@ param_grid = {
         20,
         50,
         100,
-        200,
-        500,
-        1000,
     ],  # Số lượng mẫu tối thiểu để chia một nút
     "min_samples_leaf": [
         1,
@@ -88,9 +79,6 @@ param_grid = {
         20,
         50,
         100,
-        200,
-        500,
-        1000,
     ],  # Số lượng mẫu tối thiểu ở mỗi lá
 }
 
