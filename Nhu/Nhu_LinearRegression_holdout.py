@@ -27,7 +27,7 @@ param_grid = {
     'positive': [True, False],
     'copy_X': [True, False],
     'n_jobs': [None, -1]
-    
+
 }
 
 # Tạo một đối tượng GridSearchCV
