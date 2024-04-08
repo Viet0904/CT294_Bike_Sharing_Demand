@@ -10,6 +10,7 @@ import seaborn as sns
 sns.set()
 
 dt = pd.read_csv("./BikeSharingDemand.csv")
+print(dt.isnull().sum())
 # tạo cột year, month, day, hour từ cột datetime
 dt["datetime"] = pd.to_datetime(dt["datetime"])
 dt["month"] = dt["datetime"].dt.month
