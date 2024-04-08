@@ -23,10 +23,10 @@ dt["hour"] = dt["datetime"].dt.hour
 # Chia dữ liệu thành X và y
 X = dt.drop(columns=["casual", "registered", "count", "datetime"])
 print(X)
-y = dt["count"]  # Áp dụng logarithm cho cột "count"
+y = dt["count"] 
+print(y)
 
 # Chia dữ liệu thành tập huấn luyện và tập kiểm tra
-
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=1 / 3, random_state=42
 )
@@ -35,7 +35,7 @@ print(X_test)
 
 
 ## Bagging
-# Mo hinh co so la cay hoi quy
+# Mô hình cơ sở là cây hồi quuy
 tree = DecisionTreeRegressor()
 # Tao 1 tap hop gom 10 mo hinh cay hoi quy
 baggingTree = BaggingRegressor(estimator=tree, n_estimators=10, random_state=42)

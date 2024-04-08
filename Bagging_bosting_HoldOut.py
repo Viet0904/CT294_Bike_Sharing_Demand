@@ -42,7 +42,7 @@ knnRegressor.fit(X_train, y_train)
 gradient_boosting_reg = GradientBoostingRegressor(
     n_estimators=100,  # Số lượng cây
     learning_rate=0.1,  # Tốc độ học
-    loss="squared_error",  # Hàm mất mát: squared error (least squares regression)
+    loss="squared_error", 
 )
 
 # Huấn luyện mô hình Gradient Boosting
