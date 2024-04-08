@@ -31,7 +31,7 @@ param_grid = {
 }
 
 # Tạo một đối tượng GridSearchCV
-grid_search = GridSearchCV(estimator=LinearRegression(), param_grid=param_grid, scoring='neg_mean_squared_error', cv=5)
+grid_search = GridSearchCV(estimator=LinearRegression(), param_grid=param_grid)
 
 # Tiến hành tìm kiếm trên tập huấn luyện
 grid_search.fit(X_train, y_train)

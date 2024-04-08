@@ -1,57 +1,57 @@
-import pandas as pd
-import numpy as np
-import seaborn as sns
-import warnings
-from sklearn.model_selection import train_test_split
-from sklearn.neighbors import KNeighborsRegressor
-from sklearn.metrics import mean_squared_error
+# import pandas as pd
+# import numpy as np
+# import seaborn as sns
+# import warnings
+# from sklearn.model_selection import train_test_split
+# from sklearn.neighbors import KNeighborsRegressor
+# from sklearn.metrics import mean_squared_error
 
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
-warnings.filterwarnings("ignore")
+# warnings.filterwarnings("ignore")
 
-# Đọc dữ liệu từ file "train.csv" và lưu vào DataFrame df
-df = pd.read_csv("BikeSharingDemand.csv")
+# # Đọc dữ liệu từ file
+# df = pd.read_csv("BikeSharingDemand.csv")
 
-# Tạo cột year, month, day, hour từ cột datetime
-df["datetime"] = pd.to_datetime(df["datetime"])
-df["month"] = df["datetime"].dt.month
-df["weekday"] = df["datetime"].dt.day
-df["hour"] = df["datetime"].dt.hour
+# # Tạo cột year, month, day, hour từ cột datetime
+# df["datetime"] = pd.to_datetime(df["datetime"])
+# df["month"] = df["datetime"].dt.month
+# df["weekday"] = df["datetime"].dt.day
+# df["hour"] = df["datetime"].dt.hour
 
-# Xóa cột "datetime" khỏi DataFrame df
-df = df.drop(columns=["datetime"])
+# # Xóa cột "datetime" khỏi DataFrame df
+# df = df.drop(columns=["datetime"])
 
-# Chia dữ liệu thành X và y
-X = df.drop(columns=["casual", "registered", "count"])
-y = df["count"]
+# # Chia dữ liệu thành X và y
+# X = df.drop(columns=["casual", "registered", "count"])
+# y = df["count"]
 
-# Chia dữ liệu thành tập huấn luyện và tập kiểm tra
-x_train, x_test, y_train, y_test = train_test_split(
-    X, y, test_size=1 / 3, random_state=42
-)
+# # Chia dữ liệu thành tập huấn luyện và tập kiểm tra
+# x_train, x_test, y_train, y_test = train_test_split(
+#     X, y, test_size=1 / 3, random_state=42
+# )
 
-# Xây dựng và huấn luyện mô hình KNN Regression
-model = KNeighborsRegressor(n_neighbors=9, p=1, weights="distance")
-model.fit(x_train, y_train)
-# Dự đoán kết quả trên tập kiểm tra
-y_pred = model.predict(x_test)
+# # Xây dựng và huấn luyện mô hình KNN Regression
+# model = KNeighborsRegressor(n_neighbors=9, p=1, weights="distance")
+# model.fit(x_train, y_train)
+# # Dự đoán kết quả trên tập kiểm tra
+# y_pred = model.predict(x_test)
 
-# Tính và in ra giá trị MSE và RMSE
-print("MSE = ", mean_squared_error(y_test, y_pred))
-print("RMSE = ", np.sqrt(mean_squared_error(y_test, y_pred)))
+# # Tính và in ra giá trị MSE và RMSE
+# print("MSE = ", mean_squared_error(y_test, y_pred))
+# print("RMSE = ", np.sqrt(mean_squared_error(y_test, y_pred)))
 
-# Vẽ biểu đồ giá trị thực tế và giá trị dự đoán với đường phân chia
-plt.figure(figsize=(10, 6))
-plt.scatter(y_test, y_pred, alpha=0.5)
-plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()],   linestyle="--", lw=2,color="red")
-plt.xlabel("Actual Values")
-plt.ylabel("Predicted Values")
-plt.title("Actual vs Predicted Values with Identity Line")
-plt.show()
+# # Vẽ biểu đồ giá trị thực tế và giá trị dự đoán với đường phân chia
+# plt.figure(figsize=(10, 6))
+# plt.scatter(y_test, y_pred, alpha=0.5)
+# plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()],   linestyle="--", lw=2,color="red")
+# plt.xlabel("Actual Values")
+# plt.ylabel("Predicted Values")
+# plt.title("Actual vs Predicted Values with Identity Line")
+# plt.show()
 
 
-from sklearn.model_selection import GridSearchCV
+# from sklearn.model_selection import GridSearchCV
 
 # Định nghĩa các giá trị tham số để kiểm tra tham số tốt nhất
 # param_grid = {
@@ -126,3 +126,38 @@ from sklearn.model_selection import GridSearchCV
 # # Tính và in ra giá trị MSE và RMSE với các tham số tốt nhất
 # print("MSE with best parameters = ", mean_squared_error(y_test, y_pred_grid))
 # print("RMSE with best parameters = ", np.sqrt(mean_squared_error(y_test, y_pred_grid)))
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import KFold, cross_val_score
+from sklearn.neighbors import KNeighborsRegressor
+
+# Đọc dữ liệu từ file "train.csv" và lưu vào DataFrame df
+df = pd.read_csv("BikeSharingDemand.csv")
+
+# Tạo cột year, month, day, hour từ cột datetime
+df["datetime"] = pd.to_datetime(df["datetime"])
+df["month"] = df["datetime"].dt.month
+df["weekday"] = df["datetime"].dt.day
+df["hour"] = df["datetime"].dt.hour
+
+# Xóa cột "datetime" khỏi DataFrame df
+df = df.drop(columns=["datetime"])
+
+# Chia dữ liệu thành X và y
+X = df.drop(columns=["casual", "registered", "count"])
+y = df["count"]
+
+# Xây dựng mô hình KNeighborsRegressor
+model = KNeighborsRegressor(n_neighbors=9, p=1, weights="distance")
+
+# Tìm số lượng fold tốt nhất
+k_values = [5,10,50,100,1000,10000]
+cv_scores = []
+
+for k in k_values:
+    kf = KFold(n_splits=k)
+    scores = cross_val_score(model, X, y, cv=kf, scoring="neg_mean_squared_error")
+    cv_scores.append(-1 * np.mean(scores))
+
+best_k = k_values[np.argmin(cv_scores)]
+print("Best number of folds:", best_k)
