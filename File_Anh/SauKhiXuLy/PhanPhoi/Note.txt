@@ -1,0 +1,6 @@
+left = 0.12
+bot = 0.2
+top = 0.5
+right = 0.5
+wspace = 0.2
+hspace = 0.2

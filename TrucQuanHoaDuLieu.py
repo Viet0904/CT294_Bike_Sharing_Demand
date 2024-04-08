@@ -46,6 +46,8 @@ code = {
 }
 dt["month"] = dt["month"].map(code)
 sns.barplot(x="month", y="count", data=dt)
+plt.xticks(rotation=90)
+plt.subplots_adjust(left=0.12, bottom=0.2, top=0.5, right=0.5, wspace=0.2, hspace=0.2)
 plt.show()
 # chuyển ngược lại
 code = {
@@ -76,6 +78,7 @@ code = {
 }
 dt["weekday"] = dt["weekday"].map(code)
 sns.barplot(x="weekday", y="count", data=dt)
+plt.subplots_adjust(left=0.12, bottom=0.2, top=0.5, right=0.5, wspace=0.2, hspace=0.2)
 plt.show()
 # chuyển ngược lại
 code = {
@@ -91,12 +94,14 @@ dt["weekday"] = dt["weekday"].map(code)
 
 # Trực quan hoá dữ liệu count và hour
 sns.barplot(x="hour", y="count", data=dt)
+plt.subplots_adjust(left=0.12, bottom=0.2, top=0.5, right=0.5, wspace=0.2, hspace=0.2)
 plt.show()
 
 # Trực quan hoá dữ liệu count và seeson
 codes = {1: "spring", 2: "summer", 3: "fall", 4: "winter"}
 dt["season"] = dt["season"].map(codes)
 sns.barplot(x="season", y="count", data=dt)
+plt.subplots_adjust(left=0.12, bottom=0.2, top=0.5, right=0.5, wspace=0.2, hspace=0.2)
 plt.show()
 # chuyển ngược lại
 codes = {"spring": 1, "summer": 2, "fall": 3, "winter": 4}
@@ -106,50 +111,55 @@ dt["season"] = dt["season"].map(codes)
 codes = {1: "Clear", 2: "Mist", 3: "Light Snow", 4: "Heavy Rain"}
 dt["weather"] = dt["weather"].map(codes)
 sns.barplot(x="weather", y="count", data=dt)
+plt.subplots_adjust(left=0.12, bottom=0.2, top=0.5, right=0.5, wspace=0.2, hspace=0.2)
 plt.show()
 # chuyển ngược lại
 codes = {"Clear": 1, "Mist": 2, "Light Snow": 3, "Heavy Rain": 4}
 dt["weather"] = dt["weather"].map(codes)
 
 # Trực quan hoá dữ liệu count và workingday
-codes = {1: "working_day", 0: "Holiday"}
+codes = {1: "working day", 0: "not workingday"}
 dt["workingday"] = dt["workingday"].map(codes)
 sns.barplot(x="workingday", y="count", data=dt, palette="cool")
+plt.subplots_adjust(left=0.12, bottom=0.2, top=0.5, right=0.5, wspace=0.2, hspace=0.2)
 plt.show()
 # chuyển ngược lại
-codes = {"working_day": 1, "Holiday": 0}
+codes = {"working_day": 1, "not workingday": 0}
 dt["workingday"] = dt["workingday"].map(codes)
+
+# trực quan hoa dữ liệu count và holiday
+codes = {1: "holiday", 0: "not holiday"}
+dt["holiday"] = dt["holiday"].map(codes)
+sns.barplot(x="holiday", y="count", data=dt, palette="cool")
+plt.subplots_adjust(left=0.12, bottom=0.2, top=0.5, right=0.5, wspace=0.2, hspace=0.2)
+plt.show()
+# chuyển ngược lại
+codes = {"holiday": 1, "not holiday": 0}
+dt["holiday"] = dt["holiday"].map(codes)
 
 # Trực quan hoá dữ liệu count và temp
 plt.scatter(x=dt["temp"], y=dt["count"])
 plt.xlabel("temp")
 plt.ylabel("Count")
 plt.title("Scatter plot of Count vs Temperature")
+plt.subplots_adjust(left=0.12, bottom=0.2, top=0.5, right=0.5, wspace=0.2, hspace=0.2)
 plt.show()
 
 # Trực quan hoá dữ liệu count và atemp
 plt.scatter(x="atemp", y="count", data=dt)
 plt.xlabel("atemp")
 plt.ylabel("Count")
+plt.subplots_adjust(left=0.12, bottom=0.2, top=0.5, right=0.5, wspace=0.2, hspace=0.2)
 plt.show()
 # Trực quan hoá dữ liệu count và humidity
 plt.scatter(x="humidity", y="count", data=dt)
 plt.xlabel("humidity")
 plt.ylabel("Count")
+plt.subplots_adjust(left=0.12, bottom=0.2, top=0.5, right=0.5, wspace=0.2, hspace=0.2)
 plt.show()
 # Trực quan hoá dữ liệu count và windspeed
 plt.scatter(x="windspeed", y="count", data=dt)
 plt.xlabel("windspeed")
 plt.ylabel("Count")
-plt.show()
-
-sns.distplot(dt["count"])
-plt.show()
-
-plt.figure(figsize=(12, 6))
-sns.heatmap(dt.corr(), annot=True)
-plt.show()
-
-data = dt[["temp", "atemp", "humidity", "windspeed"]]
-sns.heatmap(data.corr(), annot=True)
+plt.subplots_adjust(left=0.12, bottom=0.2, top=0.5, right=0.5, wspace=0.2, hspace=0.2)
 plt.show()
