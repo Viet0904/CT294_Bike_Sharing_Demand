@@ -16,9 +16,6 @@ dt["datetime"] = pd.to_datetime(dt["datetime"])
 dt["month"] = dt["datetime"].dt.month
 dt["weekday"] = dt["datetime"].dt.weekday
 dt["hour"] = dt["datetime"].dt.hour
-dt["year"] = dt["datetime"].dt.year
-print(dt.head())
-
 # Chia dữ liệu thành X và y
 X = dt.drop(columns=["casual", "registered", "count", "datetime"])
 y = dt["count"]
@@ -40,14 +37,9 @@ for train_index, test_index in kf.split(X):
 
     ## Bagging
     # Mô hình cơ sở là Decision Tree
-    tree = DecisionTreeRegressor(min_samples_leaf=2, min_samples_split=10)
+    tree = DecisionTreeRegressor()
     # Tạo mô hình Bagging với 10 mô hình cơ sở
-    baggingTree = BaggingRegressor(
-        estimator=tree,
-        n_estimators=100,
-        max_samples=0.9,
-        random_state=42,
-    )
+    baggingTree = BaggingRegressor(estimator=tree, n_estimators=10, random_state=42)
     # Huấn luyện mô hình
     baggingTree.fit(X_train, y_train)
     # Dự đoán kết quả
@@ -65,19 +57,3 @@ avg_rmse = sum(rmse_results) / len(rmse_results)
 # In ra kết quả trung bình của MSE và RMSE
 print("Average MSE =", avg_mse)
 print("Average RMSE =", avg_rmse)
-
-import matplotlib.pyplot as plt
-
-# Vẽ giá trị dự đoán so với giá trị thực tế
-plt.figure(figsize=(10, 6))
-plt.scatter(y_test, y_pred, color="blue")
-plt.plot(
-    [y_test.min(), y_test.max()],
-    [y_test.min(), y_test.max()],
-    linestyle="--",
-    color="red",
-)
-plt.title("Giá trị dự đoán vs. Giá trị thực tế")
-plt.xlabel("Giá trị thực tế")
-plt.ylabel("Giá trị dự đoán")
-plt.show()

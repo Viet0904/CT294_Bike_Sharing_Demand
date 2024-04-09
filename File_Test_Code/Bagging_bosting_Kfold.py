@@ -20,7 +20,7 @@ X = dt.drop(columns=["casual", "registered", "count", "datetime"])
 y = dt["count"]
 
 # Số lượng fold
-n_splits = 50
+n_splits = 5
 
 # Khởi tạo KFold
 kf = KFold(n_splits=n_splits, shuffle=True, random_state=42)

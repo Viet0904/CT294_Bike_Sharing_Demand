@@ -10,11 +10,11 @@ from sklearn.ensemble import GradientBoostingRegressor
 # Load dữ liệu từ file CSV
 dt = pd.read_csv("./BikeSharingDemand.csv")
 # tạo cột year, month, day, hour từ cột datetime
-dt["datetime"] = pd.to_datetime(dt["datetime"])
-dt["year"] = dt["datetime"].dt.year
-dt["month"] = dt["datetime"].dt.month
-dt["weekday"] = dt["datetime"].dt.weekday
-dt["hour"] = dt["datetime"].dt.hour
+# dt["datetime"] = pd.to_datetime(dt["datetime"])
+# dt["year"] = dt["datetime"].dt.year
+# dt["month"] = dt["datetime"].dt.month
+# dt["weekday"] = dt["datetime"].dt.weekday
+# dt["hour"] = dt["datetime"].dt.hour
 
 
 # Chia dữ liệu thành X và y
@@ -42,7 +42,7 @@ knnRegressor.fit(X_train, y_train)
 gradient_boosting_reg = GradientBoostingRegressor(
     n_estimators=100,  # Số lượng cây
     learning_rate=0.1,  # Tốc độ học
-    loss="squared_error", 
+    loss="squared_error",  # Hàm mất mát: squared error (least squares regression)
 )
 
 # Huấn luyện mô hình Gradient Boosting
