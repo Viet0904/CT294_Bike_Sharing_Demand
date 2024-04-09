@@ -5,6 +5,8 @@ import warnings
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_squared_error
+import matplotlib.pyplot as plt
+from sklearn.tree import plot_tree
 
 import matplotlib.pyplot as plt
 
@@ -57,28 +59,24 @@ param_grid = {
     ],  # Số lượng cây quyết định trong rừng
     "max_depth": [
         None,
+        20,
+        30,
+        50,
+    ],  # Độ sâu tối đa của các cây quyết định
+    "min_samples_split": [
+        2,
         10,
         20,
         30,
         50,
-        100,
-    ],  # Độ sâu tối đa của các cây quyết định
-    "min_samples_split": [
-        2,
-        5,
-        10,
-        20,
-        50,
-        100,
     ],  # Số lượng mẫu tối thiểu để chia một nút
     "min_samples_leaf": [
         1,
         2,
-        4,
         10,
         20,
+        30,
         50,
-        100,
     ],  # Số lượng mẫu tối thiểu ở mỗi lá
 }
 

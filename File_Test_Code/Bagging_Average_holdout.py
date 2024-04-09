@@ -8,6 +8,7 @@ from sklearn.ensemble import VotingRegressor
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsRegressor
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.ensemble import BaggingRegressor
 import numpy as np
 from sklearn.model_selection import GridSearchCV
@@ -35,15 +36,15 @@ print(X_train)
 print(X_test)
 # Định nghĩa các tham số bạn muốn tinh chỉnh
 parameters = {
-    "n_estimators": [1, 10, 20, 50, 100],
-    "max_samples": [0.1, 0.2, 0.4, 0.5, 0.6, 0.7, 0.8, 1.0],
+    "n_estimators": [10, 20, 50, 100],
+    "max_samples": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
 }
 # Mô hình cơ sở là cây hồi quuy
 tree = DecisionTreeRegressor(
     max_depth=None, min_samples_leaf=2, min_samples_split=10, splitter="best"
 )
 # Tao 1 tap hop gom 10 mo hinh cay hoi quy
-baggingTree = BaggingRegressor(estimator=tree, random_state=42)
+baggingTree = BaggingRegressor(random_state=42)
 
 # Tạo GridSearchCV
 grid_search = GridSearchCV(estimator=baggingTree, param_grid=parameters)
