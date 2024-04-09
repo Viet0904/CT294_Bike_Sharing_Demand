@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.tree import DecisionTreeRegressor
 from sklearn.metrics import mean_squared_error
 
 # Đọc dữ liệu từ tập tin CSV
@@ -24,14 +24,14 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=1 / 3, rando
 
 # Thiết lập siêu tham số để tìm kiếm
 param_grid = {
-    'n_estimators': [50, 100, 150],
     'max_depth': [None, 10, 20],
     'min_samples_split': [2, 5, 10],
-
+    'min_samples_leaf': [2],
+    'splitter': ['best']
 }
 
 # Tạo GridSearchCV object
-grid_search = GridSearchCV(RandomForestRegressor(random_state=42), param_grid, cv=5, scoring='neg_mean_squared_error')
+grid_search = GridSearchCV(DecisionTreeRegressor(random_state=42), param_grid, cv=5, scoring='neg_mean_squared_error')
 
 # Fit GridSearchCV vào dữ liệu
 grid_search.fit(X_train, y_train)
