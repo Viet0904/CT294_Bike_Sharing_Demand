@@ -15,6 +15,7 @@ print(dt.isnull().sum())
 dt["datetime"] = pd.to_datetime(dt["datetime"])
 dt["month"] = dt["datetime"].dt.month
 dt["weekday"] = dt["datetime"].dt.weekday
+dt["year"] = dt["datetime"].dt.year
 dt["hour"] = dt["datetime"].dt.hour
 print("Hiển thị 5 dòng dữ liệu đầu tiên của tập dữ liệu\n", dt.head())
 print("Hiển thị thông tin của tập dữ liệu\n", dt.info())
@@ -30,6 +31,11 @@ print(
 
 # Kiểm tra các giá trị thiếu
 print("Kiểm tra giá trị thiếu trong tập dữ liệu\n", dt.isnull().sum())
+# Trực quan hoá dữ liệu count và year
+sns.barplot(x="year", y="count", data=dt)
+plt.subplots_adjust(left=0.12, bottom=0.2, top=0.5, right=0.5, wspace=0.2, hspace=0.2)
+plt.show()
+
 # Trực quan hoá dữ liệu count và month
 code = {
     1: "January",
