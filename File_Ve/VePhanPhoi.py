@@ -148,7 +148,7 @@ plt.grid(True)
 plt.subplots_adjust(left=0.12, bottom=0.2, top=0.5, right=0.5, wspace=0.2, hspace=0.2)
 plt.show()
 
-# vẽ biểu đồ phân phối của cột workingday
+# vẽ biểu đồ phân phối của cột holiday
 codes = {1: "holiday", 0: "not holiday"}
 dt["holiday"] = dt["holiday"].map(codes)
 plt.figure(figsize=(12, 6))

@@ -28,7 +28,12 @@ print(
     "Hiển thị 5 dòng dữ liệu đầu tiên của tập dữ liệu sau khi xóa cột 'casual', 'registered', 'datetime'\n",
     dt.head(),
 )
-
+# Trực quan hoá dữ liệu count và season
+codes = {1: "spring", 2: "summer", 3: "fall", 4: "winter"}
+dt["season"] = dt["season"].map(codes)
+sns.barplot(x="season", y="count", data=dt)
+plt.subplots_adjust(left=0.12, bottom=0.2, top=0.5, right=0.5, wspace=0.2, hspace=0.2)
+plt.show()
 # Kiểm tra các giá trị thiếu
 print("Kiểm tra giá trị thiếu trong tập dữ liệu\n", dt.isnull().sum())
 # Trực quan hoá dữ liệu count và year
@@ -104,7 +109,7 @@ sns.barplot(x="hour", y="count", data=dt)
 plt.subplots_adjust(left=0.12, bottom=0.2, top=0.5, right=0.5, wspace=0.2, hspace=0.2)
 plt.show()
 
-# Trực quan hoá dữ liệu count và seeson
+# Trực quan hoá dữ liệu count và season
 codes = {1: "spring", 2: "summer", 3: "fall", 4: "winter"}
 dt["season"] = dt["season"].map(codes)
 sns.barplot(x="season", y="count", data=dt)
