@@ -12,7 +12,6 @@ sns.set()
 dt = pd.read_csv("./BikeSharingDemand.csv")
 
 print(dt.dtypes)
-
 print("\n\n\n")
 print("Hiển thị 5 dòng dữ liệu đầu tiên của tập dữ liệu\n", dt.head())
 print("Hiển thị thông tin của tập dữ liệu\n", dt.info())
